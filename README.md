@@ -27,7 +27,7 @@ Examples
 
   catzip John_Smith.zip # print content to screen 
 
-  catzip --save A.zip B.zip # print A.zip into A.txt, Z.zip -> B.txt 
+  catzip --save A.zip B.zip # print A.zip into A.txt, B.zip -> B.txt 
 
 Quirks
 

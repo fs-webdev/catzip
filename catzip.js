@@ -60,7 +60,7 @@ if (options.help) {
             content: '{underline catzip John_Smith.zip} # print content to screen'
         },
         {
-            content: '{underline catzip --save A.zip B.zip} # print A.zip into A.txt, Z.zip -> B.txt'
+            content: '{underline catzip --save A.zip B.zip} # print A.zip into A.txt, B.zip -> B.txt'
         },
         {
             header: 'Quirks',
