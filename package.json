@@ -1,0 +1,20 @@
+{
+  "name": "concat-zip",
+  "version": "1.0.0",
+  "description": "Concatenate the source files in a zip archive.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tyler Peterson <PetersonTB@FamilySearch.org>",
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.4.13",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.0"
+  },
+  "devDependencies": {
+    "electron": "^7.1.9",
+    "pkg": "^4.4.2"
+  }
+}
