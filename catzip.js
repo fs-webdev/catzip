@@ -26,6 +26,12 @@ const optionDefinitions = [
         alias: 's', 
         type: Boolean
     },
+    {
+        name: 'markdown',
+        description: 'output in markdown',
+        alias: 'm',
+        type: Boolean
+    },
 ]
 
 const options = commandLineArgs(optionDefinitions);
@@ -80,8 +86,15 @@ if (options.help) {
 }
 
 const PRINT_TO_FILES = options.save;
+const USE_MARKDOWN = options.markdown;
 
 const AdmZip = require('adm-zip');
+
+const nameEndingsToSkip = [
+    'package.json',
+    'sandbox.config.json',
+    '.gif',
+];
 
 archives = options.src;
 
@@ -108,17 +121,35 @@ function processArchive(archiveName) {
         if (name.endsWith('/') || name.endsWith('\\')) {
             return;
         }
-        if (name.endsWith('package.json')) {
-            return;
+        for (ending of nameEndingsToSkip) {
+            if (name.endsWith(ending)) {
+                return;
+            }
         }
     
         let content = zip.readAsText(name);
-        emit('// Begin', name);
+        
+        if (USE_MARKDOWN) {
+            emit('');
+            emit(`**File: ${name}**`);
+            emit('');
+            emit('```' + name.split('.').pop());
+        } else {
+            emit('// Begin', name);
+        }
         let lineNo = 1;
         [...content.matchAll(linePattern)].map(matchData => matchData[0]).forEach(line => {
-            emit(pad(lineNo++), line);
+            if (USE_MARKDOWN) {
+                emit(line);
+            } else {
+                emit(pad(lineNo++), line);
+            }
         });
-        emit('// End', name);
+        if (USE_MARKDOWN) {
+            emit('```');
+        } else {
+            emit('// End', name);
+        }
     }); 
     
     if (stream) {
