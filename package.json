@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Concatenate the source files in a zip archive.",
   "main": "index.js",
+  "bin" : {
+    "catzip": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
